@@ -36,6 +36,18 @@ The script calculates the FIFO profit/loss for the transactions and prints the r
 FIFO Profit: 96000.00
 ```
 
+## Running Tests
+The tests for the script are written using Python's built-in unittest module. To run the tests, execute the following command:
+
+```
+python3 test_fifo.py
+```
+
+The tests cover the following scenarios:
+* A successful calculation of FIFO profit/loss
+* An attempt to sell a coin that has not been purchased
+* An attempt to sell more coins than have been purchased
+
 ## Notes
 * The script assumes that the transactions in the input file are sorted chronologically, with the oldest transactions first.
 * The script raises an error if there is an attempt to sell a coin that has not been purchased, or if there is not enough quantity of the coin to sell.
