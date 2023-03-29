@@ -35,6 +35,7 @@ S XRP 5 10"""
         self.assertEqual(result.returncode, 1)
         self.assertEqual(result.stderr.split("AssertionError:")[-1].strip(), expected_output)
 
+
     # Test selling more coin than purchased
     def test_sell_not_enough_purchased_coin(self):
         file_contents = """B BTC 10000 2
@@ -47,6 +48,6 @@ S BTC 20000 5"""
         result = run(['python3', 'fifo.py', 'test_crypto_tax.txt'], stdout=PIPE, stderr=PIPE, text=True)
         self.assertEqual(result.returncode, 1)
         self.assertEqual(result.stderr.split("AssertionError:")[-1].strip(), expected_output)
-    
+        
 if __name__ == '__main__':
     unittest.main()

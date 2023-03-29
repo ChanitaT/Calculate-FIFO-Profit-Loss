@@ -1,12 +1,16 @@
 import sys
 from collections import deque
 
-def sell_coin(coin, price, quantity, inventory):
+
+def sell_coin( coin, price, quantity, inventory):
     fifo_profit_curr_trade = 0
+
     # Raise error if there is no coin to sell
     assert coin in inventory, f"No purchases found for {coin}. Cannot sell."
+
     # Calculate FIFO profit
     while quantity > 0:
+
         # Raise error if not enough coin to sell
         assert inventory[coin], f"Not enough purchases for {coin}. Cannot sell."
 
@@ -27,6 +31,7 @@ def sell_coin(coin, price, quantity, inventory):
             quantity_left = quantity_row1 - quantity
             quantity = 0
             row1[1] = quantity_left
+
     return inventory, fifo_profit_curr_trade
 
 
@@ -42,6 +47,7 @@ def calculate_fifo_profit(data):
             
         # Split the line into four values
         values = trans.split()
+        
         # Raise error if there are not four values 
         assert len(values) == 4, f"Expected 4 values, got {len(values)}"      
         transaction_type, coin, price, quantity = values  
@@ -62,7 +68,7 @@ def calculate_fifo_profit(data):
     return fifo_profit
 
 
-def file_format():
+def get_data_from_file():
     # Get the file name from command line arguments
     if len(sys.argv) < 2:
         print("Please provide a file name")
@@ -77,14 +83,15 @@ def file_format():
 
     # Prepare data from text file to list
     data = contents.split("\n")
-
     return data
 
                   
 def main():
-    data = file_format()
+    data = get_data_from_file()
+
     # Calculate the FIFO profit
     fifo_profit = calculate_fifo_profit(data)
+
     # Print the FIFO profit
     print(f"FIFO Profit: {fifo_profit:.2f}")
 
