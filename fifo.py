@@ -2,7 +2,7 @@ import sys
 from collections import deque
 
 
-def sell_coin( coin, price, quantity, inventory):
+def sell_coin(coin: str, price: float, quantity: float, inventory: dict) -> tuple:
     fifo_profit_curr_trade = 0
 
     # Raise error if there is no coin to sell
@@ -35,7 +35,7 @@ def sell_coin( coin, price, quantity, inventory):
     return inventory, fifo_profit_curr_trade
 
 
-def calculate_fifo_profit(data):
+def calculate_fifo_profit(data: list) -> float:
     # Store inventory and fifo_profit 
     inventory = {}
     fifo_profit = 0
@@ -47,7 +47,7 @@ def calculate_fifo_profit(data):
             
         # Split the line into four values
         values = trans.split()
-        
+
         # Raise error if there are not four values 
         assert len(values) == 4, f"Expected 4 values, got {len(values)}"      
         transaction_type, coin, price, quantity = values  
@@ -68,7 +68,7 @@ def calculate_fifo_profit(data):
     return fifo_profit
 
 
-def get_data_from_file():
+def get_data_from_file() -> list:
     # Get the file name from command line arguments
     if len(sys.argv) < 2:
         print("Please provide a file name")
@@ -98,4 +98,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-        
